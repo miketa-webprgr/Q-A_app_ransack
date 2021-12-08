@@ -1,2 +1,26 @@
-<h1>Questions#index</h1>
-<p>Find me in app/views/questions/index.html.erb</p>
+<h1>質問一覧（仮）</h1>
+<%= link_to "新規登録（仮）", new_question_path, class: "btn btn-primary" %>
+
+<div class="mb-3"></div>
+
+<table class="table table-hover">
+  <thead class="thead-default">
+    <tr>
+      <th><%= Question.human_attribute_name(:title) %></th>
+      <th><%= Question.human_attribute_name(:created_at) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= link_to question.title, question_path(question) %></td>
+        <td><%= question.created_at %></td>
+        <td>
+          <%= link_to "編集", edit_question_path(question), class: "btn btn-primary mr-3" %>
+          <%= link_to "削除", question, method: :delete, data: { confirm: "「#{question.title}を削除します。よろしいですか？」" }, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

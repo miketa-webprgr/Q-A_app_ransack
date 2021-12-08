@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>QAndAApp</title>
+    <title>Q & A app</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,14 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="app-title navbar navbar-expand-md navbar-light bg-light">
+      <div class="navbar-brand">Q & A app</div>
+    </div>
+    <div class="container">
+      <% if flash.notice.present? %>
+        <div class="alert alert-success"><%= flash.notice %></div>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>
