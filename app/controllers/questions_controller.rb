@@ -30,10 +30,6 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    # question = Question.new(question_params)
-    # question.save!
-    # redirect_to questions_url,
-    #             notice: "質問「#{question.title}」を登録しました。"
     @question = Question.new(question_params)
 
     if @question.save

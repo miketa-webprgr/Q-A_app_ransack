@@ -1,2 +1,32 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>ユーザーの詳細</h1>
+
+<div class="nav justify-content-end">
+  <%= link_to "一覧（仮）", users_path, class: "nav-link" %>
+</div>
+
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th><%= User.human_attribute_name(:id) %></th>
+      <th><%= @user.id %></th>
+    </tr>
+    <tr>
+      <th><%= User.human_attribute_name(:name) %></th>
+      <th><%= @user.name %></th>
+    </tr>
+    <tr>
+      <th><%= User.human_attribute_name(:email) %></th>
+      <th><%= @user.email %></th>
+    </tr>
+    <tr>
+      <th><%= User.human_attribute_name(:created_at) %></th>
+      <th><%= @user.created_at %></th>
+    </tr>
+    <tr>
+      <th><%= User.human_attribute_name(:updated_at) %></th>
+      <th><%= @user.updated_at %></th>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to "編集", edit_user_path, class: "btn btn-primary" %>
