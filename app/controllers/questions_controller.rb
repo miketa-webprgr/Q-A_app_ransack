@@ -33,7 +33,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
     if @question.save
-      redirect_to @questions,
+      redirect_to @question,
                   notice: "質問「#{@question.title}」を登録しました。"
     else
       render :new
