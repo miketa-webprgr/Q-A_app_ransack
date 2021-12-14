@@ -31,3 +31,19 @@
 
 <%= link_to "編集", edit_question_path, class: "btn btn-primary mr-3" %>
 <%= link_to "削除", question_path, method: :delete, data: { confirm: "「#{@question.title}を削除します。よろしいですか？」" }, class: "btn btn-danger" %>
+
+<%= form_with model: [@question, @answer], local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :content, '回答' %>
+    <%= f.text_area :content, rows: 5, class: "form-control", id: "answer_content" %>
+  </div>
+  <%= f.submit '回答を投稿', class: "btn btn-primary" %>
+<% end %>
+
+<% if @question.answers.present? %>
+  <ul class="list-group list-group-flush">
+    <% @question.answers.each do |answer| %>
+      <li class="list-group-item"><div><%= answer.content %></div></li>
+    <% end %>
+  </ul>
+<% end %>

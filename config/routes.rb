@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   resources :users, except: :destroy
   root to: 'questions#index'
-  resources :questions
+  resources :questions do
+    resources :answers, only: [:create]
+  end
 end
