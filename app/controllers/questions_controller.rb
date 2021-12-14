@@ -1,10 +1,10 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = current_user.questions
+    @questions = Question.all
   end
 
   def show
-    @question = current_user.questions.find(params[:id])
+    @question = Question.find(params[:id])
     @answer = Answer.new
   end
 
