@@ -7,6 +7,10 @@
 <table class="table table-hover">
   <tbody>
     <tr>
+      <th><%= User.human_attribute_name(:image) %></th>
+      <th><%= image_tag @user.image.variant(resize:'100x100') if @user.image.attached? %></th>
+    </tr>
+    <tr>
       <th><%= User.human_attribute_name(:id) %></th>
       <th><%= @user.id %></th>
     </tr>
