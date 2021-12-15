@@ -2,9 +2,12 @@ class Admin::QuestionsController < ApplicationController
   before_action :require_admin
 
   def index
+    @questions = Question.all
+    @users = User.all
   end
 
   def destroy
+    #
   end
 
   private
