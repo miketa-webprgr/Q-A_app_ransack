@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     get '/login', to: 'sessions#new'
+    post '/login', to: 'sessions#create'
+    delete '/logout', to: 'sessions#destroy'
   end
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
