@@ -6,6 +6,7 @@ class AnswersController < BaseController
     @question = Question.find(params[:question_id])
 
     if @answer.save
+      UserMailer.send_answerd_email(@question, @answer)
       redirect_to question_url(@question), notice: '回答を登録しました。'
     else
       render 'questions/show'

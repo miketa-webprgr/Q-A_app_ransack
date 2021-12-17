@@ -37,6 +37,7 @@ class QuestionsController < BaseController
     @question = current_user.questions.new(question_params)
 
     if @question.save
+      UserMailer.send_questioned_email(@question)
       redirect_to @question,
                   notice: "質問「#{@question.title}」を登録しました。"
     else

@@ -64,3 +64,5 @@ gem 'image_processing'
 gem 'ransack'
 
 gem 'kaminari', git: 'https://github.com/kaminari/kaminari'
+
+gem 'mailcatcher'
