@@ -5,5 +5,10 @@ class Admin::QuestionsController < Admin::BaseController
     @users = User.all
   end
 
-  def destroy; end
+  def destroy
+    question = Question.find(params[:id])
+    question.destroy
+    redirect_to admin_questions_url,
+                notice: "質問「#{question.title}」を削除しました。"
+  end
 end
