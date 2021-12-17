@@ -60,3 +60,5 @@ gem 'bootstrap'
 gem 'mini_magick'
 
 gem 'image_processing'
+
+gem 'ransack'
