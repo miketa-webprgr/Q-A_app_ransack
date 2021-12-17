@@ -18,7 +18,13 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= image_tag user.image.variant(resize:'80x80') if user.image.attached? %></td>
+        <td>
+          <% if user.image.attached? %>
+            <%= image_tag user.image.variant(resize:'50x50')%>
+          <% else %>
+            <%= image_tag('default-image.png', size: '50x50') %>
+          <% end %>
+        </td>
         <td><%= link_to_if !current_user.admin?, user.name, user_path(user) %></td>
         <td><%= user.email %></td>
         <% if current_user.admin? %>

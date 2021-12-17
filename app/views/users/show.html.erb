@@ -8,7 +8,13 @@
   <tbody>
     <tr>
       <th><%= User.human_attribute_name(:image) %></th>
-      <th><%= image_tag @user.image.variant(resize:'100x100') if @user.image.attached? %></th>
+      <th>
+        <% if @user.image.attached? %>
+            <%= image_tag @user.image.variant(resize:'100x100')%>
+        <% else %>
+          <%= image_tag('default-image.png', size: '100x100') %>
+        <% end %>
+      </th>
     </tr>
     <tr>
       <th><%= User.human_attribute_name(:id) %></th>
@@ -33,4 +39,6 @@
   </tbody>
 </table>
 
-<%= link_to "編集", edit_user_path, class: "btn btn-primary" %>
+<% if current_user.id == @user.id %>
+  <%= link_to "編集", edit_user_path, class: "btn btn-primary" %>
+<% end %>
