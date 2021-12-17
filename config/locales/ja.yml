@@ -15,6 +15,7 @@ ja:
         id: ID
         title: タイトル
         content: 内容
+        solved: 状態
         created_at: 登録日時
         updated_at: 更新日時
       user:

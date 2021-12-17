@@ -1,11 +1,13 @@
 class QuestionsController < BaseController
   def index
     @questions = Question.all
+    @users = User.all
   end
 
   def show
     @question = Question.find(params[:id])
     @answer = Answer.new
+    @user = User.find(@question.user_id)
   end
 
   def new
@@ -44,6 +46,6 @@ class QuestionsController < BaseController
   private
 
   def question_params
-    params.require(:question).permit(:title, :content)
+    params.require(:question).permit(:title, :content, :solved)
   end
 end
