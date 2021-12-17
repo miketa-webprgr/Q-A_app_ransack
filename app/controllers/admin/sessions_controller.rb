@@ -1,8 +1,8 @@
-class Admin::SessionsController < ApplicationController
+class Admin::SessionsController < Admin::BaseController
   skip_before_action :login_required
+  skip_before_action :check_admin
 
-  def new
-  end
+  def new; end
 
   def create
     user = User.find_by(email: session_params[:email])

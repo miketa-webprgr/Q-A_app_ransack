@@ -1,17 +1,7 @@
-class Admin::UsersController < ApplicationController
-  before_action :require_admin
-
+class Admin::UsersController < Admin::BaseController
   def index
     @users = User.all
   end
 
-  def destroy
-    #
-  end
-
-  private
-
-  def require_admin
-    redirect_to root_url unless current_user.admin?
-  end
+  def destroy; end
 end
