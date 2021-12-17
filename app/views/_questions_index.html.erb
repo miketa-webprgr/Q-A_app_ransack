@@ -12,6 +12,9 @@
   </div>
 <% end %>
 
+<%= paginate @questions %>
+<%= page_entries_info @questions %>
+
 <% if !current_user.admin? %>
   <%= link_to "新規登録", new_question_path, class: "btn btn-primary" %>
 <% end %>

@@ -62,3 +62,5 @@ gem 'mini_magick'
 gem 'image_processing'
 
 gem 'ransack'
+
+gem 'kaminari', git: 'https://github.com/kaminari/kaminari'

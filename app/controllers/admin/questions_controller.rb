@@ -1,10 +1,7 @@
 class Admin::QuestionsController < Admin::BaseController
   def index
-    # @questions = Question.all
-    # @users = User.all
-
     @q = Question.ransack(params[:q])
-    @questions = @q.result(distinct: true)
+    @questions = @q.result(distinct: true).page(params[:page]).per(5)
     @users = User.all
   end
 
