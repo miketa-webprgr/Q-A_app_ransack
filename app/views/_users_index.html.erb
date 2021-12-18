@@ -1,6 +1,6 @@
 <h1>ユーザー一覧</h1>
 
-<%= search_form_for @q,  url: "#{current_user.admin ? admin_users_path : users_path }", class: "mb-5" do |f| %>
+<%= search_form_for @q, url: "#{current_user.admin ? admin_users_path : users_path }", class: "mb-5" do |f| %>
   <div class="form-group row">
     <%= f.label :name_or_email_cont, "検索ワード", class: "col-sm-2 col-form-label" %>
     <div class="col-sm-10">
@@ -25,8 +25,6 @@
       <% if current_user.admin? %>
         <th><%= User.human_attribute_name(:admin) %></th>
       <% end %>
-      <th><%= User.human_attribute_name(:created_at) %></th>
-      <th><%= User.human_attribute_name(:updated_at) %></th>
       <th></th>
     </tr>
   </thead>
@@ -45,8 +43,6 @@
         <% if current_user.admin? %>
           <td><%= user.admin ? "あり" : "なし" %></td>
         <% end %>
-        <td><%= user.created_at %></td>
-        <td><%= user.updated_at %></td>
         <td>
           <% if current_user.admin? %>
             <%= link_to "削除", admin_user_path(user), method: :delete, data: { confirm: "「#{user.name}を削除します。よろしいですか？」" }, class: "btn btn-danger" %>

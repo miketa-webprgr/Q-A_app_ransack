@@ -1,20 +1,15 @@
 class QuestionsController < BaseController
   def index
     @q = Question.ransack(params[:q])
-
-    if params[:solved] == 'true'
-      @questions =
-        @q.result(distinct: true).where(solved: true).page(params[:page]).per(5)
-    elsif params[:solved] == 'false'
-      @questions =
-        @q
-          .result(distinct: true)
-          .where(solved: false)
-          .page(params[:page])
-          .per(5)
-    else
-      @questions = @q.result(distinct: true).page(params[:page]).per(5)
-    end
+    ordered = @q.result(distinct: true).order(created_at: :desc)
+    @questions =
+      if params[:solved] == 'true'
+        ordered.where(solved: true).page(params[:page]).per(5)
+      elsif params[:solved] == 'false'
+        ordered.where(solved: false).page(params[:page]).per(5)
+      else
+        ordered.page(params[:page]).per(5)
+      end
     @users = User.all
   end
 

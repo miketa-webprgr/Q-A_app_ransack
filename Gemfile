@@ -66,3 +66,7 @@ gem 'ransack'
 gem 'kaminari', git: 'https://github.com/kaminari/kaminari'
 
 gem 'mailcatcher'
+
+gem 'rspec-rails'
+
+gem 'factory_bot_rails'

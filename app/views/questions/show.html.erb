@@ -19,14 +19,6 @@
       <td><%= @user.name %></td>
     </tr>
     <tr>
-      <th><%= Question.human_attribute_name(:created_at) %></th>
-      <td><%= @question.created_at %></td>
-    </tr>
-    <tr>
-      <th><%= Question.human_attribute_name(:updated_at) %></th>
-      <td><%= @question.updated_at %></td>
-    </tr>
-    <tr>
       <th><%= Question.human_attribute_name(:solved) %></th>
       <td><%= @question.solved ? "解決済み" : "未解決" %></td>
     </tr>
