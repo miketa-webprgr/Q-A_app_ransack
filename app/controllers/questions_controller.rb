@@ -1,22 +1,27 @@
 class QuestionsController < BaseController
   def index
     @q = Question.ransack(params[:q])
-    ordered = @q.result(distinct: true).order(created_at: :desc)
+    if params[:solved] == 'true'
+      @q.solved_eq = true
+    elsif params[:solved] == 'false'
+      @q.solved_eq = false
+    end
+
     @questions =
-      if params[:solved] == 'true'
-        ordered.where(solved: true).page(params[:page]).per(5)
-      elsif params[:solved] == 'false'
-        ordered.where(solved: false).page(params[:page]).per(5)
-      else
-        ordered.page(params[:page]).per(5)
-      end
-    @users = User.all
+      @q
+        .result(distinct: true)
+        .order(created_at: :desc)
+        .page(params[:page])
+        .per(5)
+
+    @users = User.includes(:questions)
+    render 'admin/questions/index'
   end
 
   def show
     @question = Question.find(params[:id])
-    @answer = Answer.new
-    @user = User.find(@question.user_id)
+    @user = @question.user
+    @answer = @user.answers.build
   end
 
   def new
@@ -28,10 +33,14 @@ class QuestionsController < BaseController
   end
 
   def update
-    question = current_user.questions.find(params[:id])
-    question.update!(question_params)
-    redirect_to questions_url,
-                notice: "質問「#{question.title}」を更新しました。"
+    @question = current_user.questions.find(params[:id])
+
+    if @question.update(question_params)
+      redirect_to questions_url,
+                  notice: "質問「#{@question.title}」を更新しました。"
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -45,7 +54,7 @@ class QuestionsController < BaseController
     @question = current_user.questions.new(question_params)
 
     if @question.save
-      UserMailer.send_questioned_email(@question)
+      UserMailer.send_questioned_email(@question).deliver_now
       redirect_to @question,
                   notice: "質問「#{@question.title}」を登録しました。"
     else

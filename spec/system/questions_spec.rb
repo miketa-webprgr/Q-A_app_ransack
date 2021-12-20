@@ -1,17 +1,11 @@
 require 'rails_helper'
 
 describe '質問投稿機能', type: :system do
-  let(:user_a) do
-    FactoryBot.create(:user, name: 'ユーザーA', email: 'a@user.com')
-  end
+  let(:user_a) { FactoryBot.create(:user, name: 'ユーザーA', email: 'a@user.com') }
 
-  let(:user_b) do
-    FactoryBot.create(:user, name: 'ユーザーB', email: 'b@user.com')
-  end
+  let(:user_b) { FactoryBot.create(:user, name: 'ユーザーB', email: 'b@user.com') }
 
-  let(:question_a) do
-    FactoryBot.create(:question, title: '最初の質問', user: user_a)
-  end
+  let(:question_a) { FactoryBot.create(:question, title: '最初の質問', user: user_a) }
 
   before do
     FactoryBot.create(:question, title: '最初の質問', user: user_a)

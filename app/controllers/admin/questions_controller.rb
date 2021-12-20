@@ -10,7 +10,6 @@ class Admin::QuestionsController < Admin::BaseController
       else
         ordered.page(params[:page]).per(5)
       end
-    @users = User.all
   end
 
   def destroy

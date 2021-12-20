@@ -1,16 +1,21 @@
 class UserMailer < ApplicationMailer
   def questioned_email(user, question)
+    @question = question
+    @user = user
     mail(
       from: 'q.and.a.app@exmaple.com',
-      to: user.email,
+      to: @user.email,
       subject: '質問が投稿されました',
     )
   end
 
   def answered_email(user, question, answer)
+    @question = question
+    @user = user
+    @answer = answer
     mail(
       from: 'q.and.a.app@exmaple.com',
-      to: user.email,
+      to: @user.email,
       subject: '質問に対する回答が投稿されました',
     )
   end
