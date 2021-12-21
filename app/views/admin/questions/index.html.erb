@@ -13,9 +13,10 @@
 <% end %>
 
 <div class="mb-4">
-  <%= link_to '全て', "#{ current_user.admin ? admin_questions_path : questions_path }", class: "#{ params[:solved].nil? ? 'btn btn-success' : 'btn btn-outline-success' }" %>
-  <%= link_to '解決済み', "#{ current_user.admin ? admin_questions_path(solved: true) : questions_path(solved: true) }", class: "#{ params[:solved] == "true" ? 'btn btn-success' : 'btn btn-outline-success' }" %>
-  <%= link_to '未解決', "#{ current_user.admin ? admin_questions_path(solved: false) : questions_path(solved: false) }", class: "#{ params[:solved] == "false" ? 'btn btn-success' : 'btn btn-outline-success' }" %>
+  <% solved = params.dig(:q, :solved_eq) %>
+  <%= link_to '全て', "#{ current_user.admin ? admin_questions_path : questions_path }", class: "#{ solved.nil? ? 'btn btn-success' : 'btn btn-outline-success' }" %>
+  <%= link_to '解決済み', "#{ current_user.admin ? admin_questions_path(q: { solved_eq: true }) : questions_path(q: { solved_eq: true }) }", class: "#{ solved == 'true' ? 'btn btn-success' : 'btn btn-outline-success' }" %>
+  <%= link_to '未解決', "#{ current_user.admin ? admin_questions_path(q: { solved_eq: false }) : questions_path(q: { solved_eq: false }) }", class: "#{ solved == 'false' ? 'btn btn-success' : 'btn btn-outline-success' }" %>
 </div>
 
 <%= paginate @questions %>

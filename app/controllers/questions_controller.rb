@@ -1,12 +1,6 @@
 class QuestionsController < BaseController
   def index
     @q = Question.ransack(params[:q])
-    if params[:solved] == 'true'
-      @q.solved_eq = true
-    elsif params[:solved] == 'false'
-      @q.solved_eq = false
-    end
-
     @questions =
       @q
         .result(distinct: true)
